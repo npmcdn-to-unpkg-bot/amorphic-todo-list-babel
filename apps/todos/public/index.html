@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:b="http://bindster.com" xmlns:fb="http://ogp.me/ns/fb#" xml:lang="en" lang="en">
+
+<head>
+  <script src="/bower_components/q/q.js?ver=0"></script>
+  <script src="/bower_components/jquery/dist/jquery.min.js?ver=0"></script>
+  <script src="/bower_components/underscore/underscore-min.js?ver=0"></script>
+
+  <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/todomvc-base.css" rel="stylesheet">
+  <link href="/css/todomvc-index.css" rel="stylesheet">
+</head>
+
+<body style="visibility:hidden;">
+  <section id="todoapp">
+    <header id="header">
+      <h1>todos</h1>
+      <input type="text" id="new-todo" b:bind="todoDescription" b:trigger="addTodo()" b:placeholder="What needs to be done?">
+    </header> 
+    <section id="main">
+      <input type="checkbox" id="toggle-all">
+      <ul id="todo-list">
+        <b:iterate on="displayedTodos" with="todo">
+          <li b:class="editing" b:showif="todo.isEditing">
+            <input type="text" class="edit" b:bind="todo.description" b:onenter="startSaveTodo()">
+          </li>
+          <li b:class="{ completedClass(todo) }" b:showif="!todo.isEditing" b:ondblclick="setEditingTodo(todo)">
+            <input type="checkbox" class="toggle" b:bind="todo.isComplete" b:onclick="setTodoComplete(todo)" b:truevalue="true" b:falsevalue="false">
+            <label b:bind="todo.description"></label>
+            <button class="destroy" b:onclick="selectedTodo=todo;destroyTodo()"></button>
+          </li>
+        </b:iterate>
+      </ul>
+    </section>
+      <footer b:showif="todos.length" id="footer">
+        <span id="todo-count"><strong b:bind="remainingTodos.length"></strong> <span b:bind="pluralizedItem">items</span> remaining</span>
+        <ul id="filters">
+          <li><a href="" b:class="{ filterClass('all') }" b:onclick="setFilter('all')">All</a></li>
+          <li><a href="" b:class="{ filterClass('active') }" b:onclick="setFilter('active')">Active</a></li>
+          <li><a href="" b:class="{ filterClass('completed') }" b:onclick="setFilter('completed')">Completed</a></li>
+        </ul>
+        <button id="clear-completed" b:onclick="clearCompletedTodos()">Clear Completed</button>
+      </footer>
+  </section>
+
+  <footer id="info">
+    <p>Double-click to edit a todo</p>
+    <p>Created by <a href="https://github.com/davek09">Dave Kerr</a></p>
+    <p>Based on Amorphic framework by <a href="https://github.com/selsamman">selsamman</a></p>
+    <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+  </footer>
+   
+  <script src="/bindster/index.js?ver=0"></script>
+  <script src="/bindster/router.js?ver=0"></script>
+  <script src="/supertype/index.js?ver=0"></script>
+  <script src="/semotus/index.js?ver=0"></script>
+  <script src="/amorphic/client.js?ver=0"></script>
+  <script src="/amorphic/init/todos.js?ver=0"></script>
+  <script src="/bindster/bindster-amorphic.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "amorphic-todo-list",
+  "description": "Front to back isomorphic framework for developing applications with node.js and mongoDB",
+  "main": "",
+  "authors": [
+    "Dave Kerr <davek09@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/hackerrdave/amorphic-todo-list",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "3.1.1",
+    "jquery": "2.1.4",
+    "q": "1.4.x",
+    "underscore": "1.8.3"
+  }
+}

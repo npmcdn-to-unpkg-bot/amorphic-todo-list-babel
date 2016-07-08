@@ -1,0 +1,28 @@
+{
+  "name": "amorphic-todo-list",
+  "description": "Front to back isomorphic framework for developing applications with node.js and mongoDB",
+  "homepage": "https://github.com/davek09/amorphic-todo-list",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "export PORT=${PORT:=3001} && node app.js --port $PORT",
+    "postinstall": "bower install"
+  },
+  "dependencies": {
+    "amorphic": "0.2.16",
+    "bower": "^1.7.7",
+    "connect": "2.6.2",
+    "q": "^1.4.1",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "chai": "1.x",
+    "eslint": "1.1.x",
+    "gulp": "3.9.0",
+    "gulp-eslint": "1.1.0",
+    "gulp-load-plugins": "^1.2.0",
+    "mocha": "1.x"
+  },
+  "engines": {
+    "node": "4.3.1"
+  }
+}
