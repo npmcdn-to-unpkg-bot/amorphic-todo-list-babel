@@ -42,19 +42,19 @@ module.exports.controller = function(objectTemplate, getTemplate) {
       type: String,
       value: 'all'
     },
-    filterClass: function(filterName) {
+    filterClass(filterName) {
       if (filterName === this.filter) { return 'selected'; }
       return '';
     },
-    setFilter: function(filterName) {
+    setFilter(filterName) {
       this.filter = filterName;
       this.updateDisplayedTodos();
     },
-    setTodoComplete: function(todo) {
+    setTodoComplete(todo) {
       this.selectedTodo = todo;
       this.toggleTodoCompletion();
     },
-    updateDisplayedTodos: function () {
+    updateDisplayedTodos() {
       if (this.filter === 'all') {
         this.displayedTodos = this.todos;
       } else if (this.filter === 'active' ) {
@@ -63,12 +63,12 @@ module.exports.controller = function(objectTemplate, getTemplate) {
         this.displayedTodos = this.completeTodos;
       }
     },
-    updateTodoCollections: function () {
+    updateTodoCollections () {
       this.updateRemainingTodos();
       this.updatePluralizedItem();
       this.updateDisplayedTodos();
     },
-    updateRemainingTodos: function(){
+    updateRemainingTodos(){
       var remainingTodos = [];
       var completeTodos = [];
       var todo;
@@ -80,7 +80,7 @@ module.exports.controller = function(objectTemplate, getTemplate) {
       this.remainingTodos = remainingTodos;
       this.completeTodos = completeTodos;
     },
-    addTodo: function() {
+    addTodo() {
       var todos = this.todos;
       var newTodo = new Todo(this.todoDescription);
       todos.push(newTodo);
@@ -88,7 +88,7 @@ module.exports.controller = function(objectTemplate, getTemplate) {
       this.todos = todos;
       this.updateTodoCollections();
     },
-    destroyTodo: function() {
+    destroyTodo() {
       if (this.selectedTodo) {
         var ix = _.indexOf(this.todos, this.selectedTodo);
         if (ix >= 0) { this.todos.splice(ix, 1); }
@@ -96,7 +96,7 @@ module.exports.controller = function(objectTemplate, getTemplate) {
         this.updateTodoCollections();
       }
     },
-    clearCompletedTodos: function() {
+    clearCompletedTodos() {
       var todos = [];
       for (var i = 0; i < this.todos.length; i++) {
         var todo = this.todos[i];
@@ -105,14 +105,14 @@ module.exports.controller = function(objectTemplate, getTemplate) {
       this.todos = todos;
       this.updateTodoCollections();
     },
-    completedClass: function(todo) {
+    completedClass(todo) {
       return todo.isComplete ? 'completed' : '';
     },
-    startSaveTodo: function(todo) {
+    startSaveTodo(todo) {
       this.selectedTodo = todo;
       this.saveTodo();
     },
-    saveTodo: function() {
+    saveTodo() {
       if (this.selectedTodo) {
         var selectedTodo = this.selectedTodo;
         var ix = _.indexOf(this.todos, selectedTodo);
@@ -122,11 +122,11 @@ module.exports.controller = function(objectTemplate, getTemplate) {
         this.updateTodoCollections();
       }
     },
-    setEditingTodo: function(todo) {
+    setEditingTodo(todo) {
       this.selectedTodo = todo;
       this.editTodo();
     },
-    editTodo: function() {
+    editTodo() {
       if (this.selectedTodo) {
         var selectedTodo = this.selectedTodo;
         var ix = _.indexOf(this.todos, selectedTodo);
@@ -135,7 +135,7 @@ module.exports.controller = function(objectTemplate, getTemplate) {
         this.selectedTodo = null;
       }
     },
-    toggleTodoCompletion: function() {
+    toggleTodoCompletion() {
       if (this.selectedTodo) {
         var selectedTodo = this.selectedTodo;
         var ix = _.indexOf(this.todos, selectedTodo);
@@ -144,8 +144,8 @@ module.exports.controller = function(objectTemplate, getTemplate) {
         this.updateTodoCollections();
       }
     },
-    updatePluralizedItem: function() {
-      if (this.remainingTodos.length === 1) { 
+    updatePluralizedItem() {
+      if (this.remainingTodos.length === 1) {
         this.pluralizedItem = 'item';
       } else {
         this.pluralizedItem = 'items';

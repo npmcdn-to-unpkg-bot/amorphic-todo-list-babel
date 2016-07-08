@@ -1,5 +1,7 @@
 {
   "port": 3001,
+  "sourceMode": "prod",
+  "compressXHR": true,
   "sessionSeconds": 3600,
   "objectCacheSeconds": 600,
   "sessionSecret": "Ey0veeljPcLsHitdxCG2",
