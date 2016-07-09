@@ -3,6 +3,12 @@ module.exports.controller = function(objectTemplate, getTemplate) {
   var Todo = getTemplate('./models/todo.js').Todo;
 
   var Controller = objectTemplate.create('Controller', {
+    clientInit() {
+      console.log('client initialized');
+    },
+    serverInit() {
+      console.log('server initialized');
+    },
     selectedTodo: {
       type: Todo
     },
@@ -84,6 +90,7 @@ module.exports.controller = function(objectTemplate, getTemplate) {
       var todos = this.todos;
       var newTodo = new Todo(this.todoDescription);
       todos.push(newTodo);
+      this.postToReactServer();
       this.todoDescription = '';
       this.todos = todos;
       this.updateTodoCollections();
@@ -149,6 +156,22 @@ module.exports.controller = function(objectTemplate, getTemplate) {
         this.pluralizedItem = 'item';
       } else {
         this.pluralizedItem = 'items';
+      }
+    },
+    postToReactServer: {
+      on: 'server',
+      body() {
+        var description = this.todoDescription;
+        var request = require('request');
+
+        request({
+          uri: 'http://localhost:7000/api/comments',
+          method: 'POST',
+          json: {
+            text: description,
+            author: 'YOOO'
+          }
+        });
       }
     }
   });

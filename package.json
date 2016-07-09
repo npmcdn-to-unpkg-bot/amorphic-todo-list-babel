@@ -11,11 +11,12 @@
     "amorphic": "1.2.x",
     "amorphic-mandrill": "0.x",
     "amorphic-userman": "0.x",
-    "persistor": "1.2.x",
-    "supertype": "1.2.x",
     "bower": "^1.7.7",
     "connect": "2.6.2",
+    "persistor": "1.2.x",
     "q": "^1.4.1",
+    "request": "^2.72.0",
+    "supertype": "1.2.x",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
